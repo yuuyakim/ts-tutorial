@@ -2,15 +2,9 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { ListItem } from './components/ListItem';
+import type { User } from './types/user';
 
 function App() {
-
-  type User = {
-    id: number,
-    name: string,
-    age: number,
-    personalColor: string
-  }
 
   const [users, setUsers] = useState<User[]>([])
 
@@ -44,7 +38,7 @@ function App() {
   return (
     <div className="App">
       {users.map(user => (
-        <ListItem id={user.id} name={user.name} age={user.age}></ListItem>
+        <ListItem id={user.id} name={user.name} age={user.age} personalColor={user.personalColor}></ListItem>
       ))}
     </div>
   );
