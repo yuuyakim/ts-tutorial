@@ -1,24 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { ListItem } from './components/ListItem';
 
 function App() {
+
+  type User = {
+    id: number,
+    name: string,
+    age: number,
+    personalColor: string
+  }
+
+  const [users, setUsers] = useState<User[]>([])
+
+  const usersJson: Array<User> = [
+    {
+      id: 1,
+      name: "hoge",
+      age: 20,
+      personalColor: "blue",
+    },
+    {
+      id: 2,
+      name: "fuga",
+      age: 22,
+      personalColor: "pink",
+    },
+    {
+      id: 3,
+      name: "piyo",
+      age: 24,
+      personalColor: "green",
+    },
+  ]
+
+  useEffect(() => {
+    setUsers(usersJson)
+  }, [])
+
+  console.log(users)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {users.map(user => (
+        <ListItem id={user.id} name={user.name} age={user.age}></ListItem>
+      ))}
     </div>
   );
 }
